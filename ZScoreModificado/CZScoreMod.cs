@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using OxyPlot;
+
 namespace ZScoreModificado
 {
     class CZScoreMod
@@ -77,8 +79,9 @@ namespace ZScoreModificado
             return mediaAmostral;
         }
 
-        public int ZScoreMod(List<double> lista)
+        public List<DataPoint> ZScoreMod(List<double> lista, double limiar)
         {
+            List<DataPoint> ListaOutlierComPos = new List<DataPoint>();
             int qntOutlier = 0;
             double mi = 0.0;
             double mad = MAD(lista);
@@ -87,12 +90,13 @@ namespace ZScoreModificado
             for (int i = 0; i < lista.Count; i++)
             {
                 mi = Math.Abs((0.6745 / mad) * (lista[i] - mediaAmostral));
-                if (mi > 2)
+                if (mi > limiar)
                 {
                     qntOutlier = qntOutlier + 1;
+                    ListaOutlierComPos.Add(new DataPoint(i + 1, lista[i]));
                 }
             }
-            return qntOutlier;
+            return (ListaOutlierComPos);
         }
     }
 }

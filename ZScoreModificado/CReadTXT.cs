@@ -11,9 +11,9 @@ namespace ZScoreModificado
     {
         public string[] ArrayMedicoes(string path)
         {
-            StreamReader sr = new StreamReader(path);
-            string[] mArray = sr.ReadToEnd().Split('\r');
-            return mArray;
+                StreamReader sr = new StreamReader(path);
+                string[] mArray = sr.ReadToEnd().Split('\r');
+                return mArray; 
         }
 
         public List<double> ConverteArrayemLista(string[] m)
