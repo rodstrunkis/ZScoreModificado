@@ -32,14 +32,14 @@ namespace ZScoreModificado
             myModel = new PlotModel();
             cplotView.Model = myModel;
             configModel();
-
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             oFDPesquisar.ShowDialog();
             txtPesquisar.Text = oFDPesquisar.FileName;
-            marraystring = readTXT.ArrayMedicoes(oFDPesquisar.FileName);
+            if (txtPesquisar.Text != "")
+                marraystring = readTXT.ArrayMedicoes(oFDPesquisar.FileName);
         }
 
         private void btnExecutar_Click(object sender, EventArgs e)
